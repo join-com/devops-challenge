@@ -1,0 +1,29 @@
+{
+  "name": "acceleration-dv",
+  "version": "0.0.1",
+  "description": "calculates dv in acceleration",
+  "main": "dist/index.js",
+  "repository": {},
+  "author": "JOIN Team",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "env-cmd .env ts-node ./server",
+    "start": "node dist",
+    "build": "tsc",
+    "build:clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.15",
+    "env-cmd": "^8.0.2",
+    "prettier": "^1.15.3",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@types/request-promise-native": "^1.0.15",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
