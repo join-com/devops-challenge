@@ -7,12 +7,12 @@ This challenge addresses a web application with a microservice architecture to c
 - The microservices take inputs from the URL query form and return the result in JSON format
 - The microservices are not stable and can stop serving requests
 ## Services:
-- `acceleration-dv` calculates  𝚫v=vf-vi
+- `acceleration-dv` calculates `𝚫v=vf-vi`
 ```bash
 curl http://127.0.0.1:3001/dv?vf=200&vi=5
 {"dv":195}
 ```
-- `acceleration-a` calculates  a=𝚫v/t
+- `acceleration-a` calculates `a=𝚫v/t`
 ```bash
 curl http://127.0.0.1:3002/a?dv=200&t=5
 {"a":40}
