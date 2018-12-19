@@ -1,6 +1,6 @@
 # Infrastructure Engineer (DevOps) Challenge
 ## The context
-This challenge addresses a web application with a microservice architecture to calculate the acceleration of an object.
+This challenge addresses a web application with a microservice architecture to calculate the [acceleration](http://www.softschools.com/formulas/physics/acceleration_formula/1/) of an object.
 ## The application
 - The application contains 3 microservices
 - Each microservice takes care of only one arithmetic operation
@@ -24,7 +24,7 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 ```
 
 # Task
-- Using Helm, write the necessary Kubernetes deployment and service files that can be used to create the full application, running 2 instances of each microservice.
+- Using [Helm](https://helm.sh), write the necessary Kubernetes deployment and service files that can be used to create the full application, running 2 instances of each microservice.
 - Only  `/calc` of `acceleration-calc` microservices can be available outside of the kubernetes cluster.
 - Run the application on a kubernetes cluster like Minikube or Docker for Mac.
 - Make sure the application is stable.
