@@ -1,4 +1,6 @@
 # Infrastructure Engineer (DevOps) Challenge
+![JOIN acceleration](https://github.com/join-com/devops-challenge/raw/master/illustration.png)
+
 ## The context
 This challenge addresses a web application with a microservice architecture to calculate the [acceleration](http://www.softschools.com/formulas/physics/acceleration_formula/1/) of an object.
 ## The application
