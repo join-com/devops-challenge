@@ -43,5 +43,5 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - Fork this repo
 - The challenge is on!
 - Create a pull request
-- Please return your working solution within 7 days of receiving this challenge
+- Please complete your working solution within 7 days of receiving this challenge, and be sure to notify us when it is ready for review.
 
