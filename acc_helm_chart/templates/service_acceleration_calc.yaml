@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ include "acc-helm-chart.fullname" . }}-{{ .Values.acceleration_calc.name }}"
+  labels:
+    app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_calc.name }}"
+    helm.sh/chart: {{ include "acc-helm-chart.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.acceleration_calc.service.type }}
+  ports:
+    - port: {{ .Values.acceleration_calc.service.port }}
+      targetPort: {{ .Values.acceleration_calc.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_calc.name }}"
+    app.kubernetes.io/instance: {{ .Release.Name }}

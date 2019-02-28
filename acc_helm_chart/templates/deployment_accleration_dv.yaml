@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ include "acc-helm-chart.fullname" . }}-{{ .Values.acceleration_dv.name }}"
+  labels:
+    app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_dv.name }}"
+    helm.sh/chart: "{{ include "acc-helm-chart.chart" . }}-{{ .Values.acceleration_dv.name }}"
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_dv.name }}"
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_dv.name }}"
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.acceleration_dv.image.repository }}:{{ .Values.acceleration_dv.image.tag }}"
+          imagePullPolicy: {{ .Values.acceleration_dv.image.pullPolicy }}
+          env:
+            - name: "WEB_PORT"
+              value: "{{ .Values.acceleration_dv.service.port }}"
+          ports:
+            - name: http
+              containerPort: {{ .Values.acceleration_dv.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.acceleration_dv.service.port }}
+            initialDelaySeconds: {{ .Values.acceleration_a.probes.initialDelaySeconds }}
+            periodSeconds: {{ .Values.acceleration_a.probes.periodSeconds }}
+            timeoutSeconds: {{ .Values.acceleration_a.probes.timeoutSeconds }}
+            successThreshold: {{ .Values.acceleration_a.probes.successThreshold }}
+            failureThreshold: {{ .Values.acceleration_a.probes.failureThreshold }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.acceleration_dv.service.port }}
+              initialDelaySeconds: {{ .Values.acceleration_a.probes.initialDelaySeconds }}
+              periodSeconds: {{ .Values.acceleration_a.probes.periodSeconds }}
+              timeoutSeconds: {{ .Values.acceleration_a.probes.timeoutSeconds }}
+              successThreshold: {{ .Values.acceleration_a.probes.successThreshold }}
+              failureThreshold: {{ .Values.acceleration_a.probes.failureThreshold }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      restartPolicy: Always
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

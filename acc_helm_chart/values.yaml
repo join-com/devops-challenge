@@ -1,0 +1,78 @@
+# Default values for acc-helm-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+acceleration_a:
+    name: "acceleration-a"
+    image:
+      repository: zakare/acceleration-a
+      tag: 0.1.0
+      pullPolicy: IfNotPresent 
+    service:
+      type: ClusterIP
+      port: 3002
+    probes:
+      initialDelaySeconds: 1
+      periodSeconds: 1
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 1
+
+acceleration_dv:
+    name: "acceleration-dv"
+    image:
+      repository: zakare/acceleration-dv
+      tag: 0.1.0
+      pullPolicy: IfNotPresent 
+    service:
+      type: ClusterIP
+      port: 3001
+    probes:
+      initialDelaySeconds: 1
+      periodSeconds: 2
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 1
+
+acceleration_calc:
+    name: "acceleration-calc"
+    image:
+      repository: zakare/acceleration-calc
+      tag: 0.1.0
+      pullPolicy: IfNotPresent 
+    service:
+      type: LoadBalancer
+      port: 80
+      targetPort: 3000
+    
+    ingress:
+      enabled: false
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      paths: "/"
+      hosts: 
+      tls: []
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+
+nameOverride: ""
+fullnameOverride: ""
+

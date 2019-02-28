@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ include "acc-helm-chart.fullname" . }}-{{ .Values.acceleration_calc.name }}"
+  labels:
+    app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_calc.name }}"
+    helm.sh/chart: {{ include "acc-helm-chart.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_calc.name }}"
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "{{ include "acc-helm-chart.name" . }}-{{ .Values.acceleration_calc.name }}"
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.acceleration_calc.image.repository }}:{{ .Values.acceleration_calc.image.tag }}"
+          imagePullPolicy: {{ .Values.acceleration_calc.image.pullPolicy }}
+          env:
+            - name: "WEB_PORT"
+              value: "{{ .Values.acceleration_calc.service.port }}"
+            - name: "DV_URL"
+              value: "http://{{ include "acc-helm-chart.fullname" . }}-{{ .Values.acceleration_dv.name }}:{{ .Values.acceleration_dv.service.port }}/dv"
+            - name: "A_URL"
+              value: "http://{{ include "acc-helm-chart.fullname" . }}-{{ .Values.acceleration_a.name }}:{{ .Values.acceleration_a.service.port }}/a"
+          ports:
+            - name: http
+              containerPort: {{ .Values.acceleration_calc.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.acceleration_calc.service.port }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.acceleration_calc.service.port }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
