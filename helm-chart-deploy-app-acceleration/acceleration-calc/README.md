@@ -1,10 +1,10 @@
 Infrastructure Engineer (DevOps) Challenge
 
-#install helm chart provided
+# install helm chart provided
 helm install --name acceleration-calc acceleration-calc-0.0.1.tgz
 
 
-#info after helm chart installed on Minikube test environment
+# info after helm chart installed on Minikube test environment
 
 root@webserver:/DevOps-join-Challenge/devops-challenge/helm-chart-deploy-app-acceleration/acceleration-calc# helm list
 NAME                    REVISION        UPDATED                         STATUS          CHART                   APP VERSION     NAMESPACE
