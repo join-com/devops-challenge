@@ -1,4 +1,3 @@
-root@webserver:/kubernetes-course/helm# more README.md
 # Helm
 
 # Install helm
