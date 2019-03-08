@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.acceleration_a.name }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.acceleration_a.name }}
+    helm.sh/chart: {{ include "acceleration-calc.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.acceleration_a.name }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Values.acceleration_a.name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.acceleration_a.image.repository }}:{{ .Values.acceleration_a.image.tag }}"
+          imagePullPolicy: {{ .Values.acceleration_a.image.pullPolicy }}
+          env:
+            - name: "WEB_PORT"
+              value: "{{ .Values.acceleration_a.service.port }}"
+          ports:
+            - name: http
+              containerPort: {{ .Values.acceleration_a.service.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

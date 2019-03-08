@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ include "acceleration-calc.fullname" . }}-{{ .Values.acceleration_dv.name }}"
+  labels:
+    app.kubernetes.io/name: {{ .Values.acceleration_dv.name }}
+    helm.sh/chart: {{ include "acceleration-calc.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.acceleration_dv.service.type }}
+  ports:
+    - port: {{ .Values.acceleration_dv.service.port }}
+      targetPort: {{ .Values.acceleration_dv.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ .Values.acceleration_dv.name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
