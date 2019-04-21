@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acceleration-calc
+  labels:
+    app: acceleration-calc
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: acceleration-calc
+  template:
+    metadata:
+      labels:
+        app: acceleration-calc
+    spec:
+      containers:
+      - name: acceleration-calc
+        image: acceleration-calc
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000

@@ -1,3 +1,49 @@
+# Notes
+This all was tested with MiniCube on
+- macOS 10.14.4
+- minikube v1.0.0
+- helm client/server v2.13.1
+
+Due to running all with default configuration the calc service is exposed to port 30000. Minicube has proxy interface listening to 192.168.99.100
+```bash
+curl http://192.168.99.100:30000/calc?vf=200\&vi=5\&t=123
+```
+
+I've added the separate operations.sh script that allows to automate the build, deploy and destroy process
+```bash
+Usage:
+	./operations.sh (build|cleanup|stop-compose|start-compose|help)
+```
+Here is how it looks when installed
+```bash
+NAME:   devops-challenge
+LAST DEPLOYED: Sun Apr 21 11:19:01 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Deployment
+NAME               READY  UP-TO-DATE  AVAILABLE  AGE
+acceleration-a     0/2    2           0          0s
+acceleration-calc  0/2    2           0          0s
+acceleration-dv    0/2    2           0          0s
+
+==> v1/Pod(related)
+NAME                                READY  STATUS             RESTARTS  AGE
+acceleration-a-57d4f5478b-96z2w     0/1    Pending            0         0s
+acceleration-a-57d4f5478b-sp4rs     0/1    ContainerCreating  0         0s
+acceleration-calc-5788d7df5d-5gmpw  0/1    ContainerCreating  0         0s
+acceleration-calc-5788d7df5d-lg7n2  0/1    Pending            0         0s
+acceleration-dv-94c5bf7df-92zlg     0/1    ContainerCreating  0         0s
+acceleration-dv-94c5bf7df-tk8nh     0/1    Pending            0         0s
+
+==> v1/Service
+NAME               TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)         AGE
+acceleration-a     ClusterIP  10.102.224.6   <none>       3002/TCP        0s
+acceleration-calc  NodePort   10.111.121.35  <none>       3000:30000/TCP  0s
+acceleration-dv    ClusterIP  10.99.24.13    <none>       3001/TCP        0s
+```
+
 # Infrastructure Engineer (DevOps) Challenge
 ![JOIN acceleration](https://github.com/join-com/devops-challenge/raw/master/illustration.png)
 
@@ -44,4 +90,3 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - The challenge is on!
 - Create a pull request
 - Please complete your working solution within 7 days of receiving this challenge, and be sure to notify us when it is ready for review.
-

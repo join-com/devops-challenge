@@ -11,6 +11,7 @@ const server = http.createServer((req, res) => {
   if (status.fail) {
     res.writeHead(500, { 'Content-Type': 'text/html' });
     res.end('Something wrong');
+    console.log(`Status is ${status}`);
     return;
   }
   const { pathname, query } = url.parse(req.url!, true);
@@ -42,7 +43,3 @@ server.listen(port, (err: Error) => {
 
   console.log(`server is listening on ${port}`);
 });
-
-setTimeout(() => {
-  status.fail = true;
-}, Math.random() * 300000);

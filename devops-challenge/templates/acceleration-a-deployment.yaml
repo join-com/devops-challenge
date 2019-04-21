@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acceleration-a
+  labels:
+    app: acceleration-a
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: acceleration-a
+  template:
+    metadata:
+      labels:
+        app: acceleration-a
+    spec:
+      containers:
+      - name: acceleration-a
+        image: acceleration-a
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: accel-a
+          containerPort: 3002
+          protocol: TCP

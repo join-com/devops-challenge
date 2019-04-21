@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: acceleration-a
+spec:
+  selector:
+    app: acceleration-a
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 3002
+    targetPort: 3002
