@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+  name: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+      track: stable
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+        track: stable
+    spec:
+      containers:
+      - image: {{ .Values.acceleration-calc.image.repo }}:{{ .Values.acceleration-calc.image.tag}}
+        name: {{ .Values.acceleration-calc.name }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{.Values.acceleration-calc.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: 200m

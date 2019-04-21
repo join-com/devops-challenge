@@ -1,0 +1,25 @@
+acceleration:
+  name: acceleration
+
+mountDir: /acceleration
+
+acceleration-a:
+  name: acceleration-a
+  image:
+    repo: acceleration-a
+    tag: latest
+  containerPort: 3002
+
+acceleration-calc:
+  name: acceleration-calc
+  image:
+    repo: acceleration-calc
+    tag: latest
+  containerPort: 3000
+  
+acceleration-dv:
+  name: acceleration-dv
+  image:
+    repo: acceleration-dv
+    tag: latest
+  containerPort: 3001
