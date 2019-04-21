@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.acceleration-calc.name }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Values.acceleration-calc.name }}
+  ports:
+  - protocol: TCP
+    port: {{.Values.acceleration-calc.containerPort }}
+    nodePort: {{.Values.acceleration-calc.containerPort }}
