@@ -16,6 +16,7 @@ pipeline {
                     }
                 }
             }
+	}		
 		stage('Push Docker Image acceleration-a') {
             when {
                 branch 'master'
