@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-dv"))
+                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-dv")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -61,7 +61,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-calc"))
+                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-calc")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
