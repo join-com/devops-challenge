@@ -4,22 +4,22 @@ acceleration:
 mountDir: /acceleration
 
 acceleration-a:
-  name: acceleration-a
+  name: accelerationa
   image:
-    repo: acceleration-a
+    repo: accelerationa
     tag: latest
   containerPort: 3002
 
 acceleration-calc:
-  name: acceleration-calc
+  name: accelerationcalc
   image:
-    repo: acceleration-calc
+    repo: accelerationcalc
     tag: latest
   containerPort: 3000
   
 acceleration-dv:
-  name: acceleration-dv
+  name: accelerationdv
   image:
-    repo: acceleration-dv
+    repo: accelerationdv
     tag: latest
   containerPort: 3001
