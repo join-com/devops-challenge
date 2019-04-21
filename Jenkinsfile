@@ -46,14 +46,7 @@ pipeline {
                 }
             }	
         }
-		stage('start minikube'){
-			when {
-                branch 'master'
-            }
-			steps {
-				sh 'minikube start'
-			}
-		}
+
 		stage('initialize helm'){
 			when {
                 branch 'master'
