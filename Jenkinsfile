@@ -20,19 +20,6 @@ pipeline {
                 }
             }
 	}		
-		stage('Push Docker Image acceleration-a') {
-            when {
-                branch 'master'
-            }
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "acceleration-a")
-                        app.push("latest")
-                    }
-                }
-            }
-        }
 		stage('Build Docker Image for acceleration-dv') {
             when {
                 branch 'master'
