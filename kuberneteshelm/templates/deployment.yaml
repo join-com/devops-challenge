@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+  name: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+      track: stable
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: {{ .Release.Name }}-{{ .Values.acceleration.name }}
+        track: stable
+    spec:
+      containers:
+      - image: {{ .Values.acceleration-a.image.repo }}:{{ .Values.acceleration-a.image.tag}}
+        name: {{ .Values.acceleration-a.name }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{.Values.acceleration-a.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /a
+            port: 3002
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: 200m
+      - image: {{ .Values.acceleration-dv.image.repo }}:{{ .Values.acceleration-dv.image.tag}}
+        name: {{ .Values.acceleration-dv.name }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{.Values.acceleration-dv.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /dv
+            port: 3001
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: 200m        
+status: {}
