@@ -1,0 +1,16 @@
+Instructions to complete the deployment
+
+Assumptions
+
+1) kubernetes elements are already installed on the server
+2) Helm is installed on the server
+3) Docker is installed on the server
+4) Jenkins is installed on the server
+
+Steps to follow to complete deployment
+
+1) Open jenkins http://IP:8080 and enter the password from the server
+2) Create a credential profile in jenkins for github
+3) Create a credential profile in jenkins for kubeconfig 
+3) Add github repo with credential and select the respective repo
+4) Start the build in jenkins
