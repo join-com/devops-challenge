@@ -1,7 +1,10 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "gauravchatrath/acceleration"
+        DOCKER_IMAGE_NAME = "acceleration-a"
+	    DOCKER_IMAGE_NAME1 = "acceleration-dv"
+	    DOCKER_IMAGE_NAME2 = "acceleration-calc"
+	    
     }
     stages {
         stage('Build Docker Image for acceleration-a') {
@@ -10,7 +13,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./accelerationa")
+                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-a")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -24,7 +27,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "./accelerationa")
+                        app.push("${env.BUILD_NUMBER}", "acceleration-a")
                         app.push("latest")
                     }
                 }
@@ -36,7 +39,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./accelerationdv")
+                    app = docker.build(DOCKER_IMAGE_NAME1 , "./acceleration-dv")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -50,7 +53,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "./accelerationdv")
+                        app.push("${env.BUILD_NUMBER}", "acceleration-dv")
                         app.push("latest")
                     }
                 }
@@ -62,7 +65,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-calc")
+                    app = docker.build(DOCKER_IMAGE_NAME2 , "./acceleration-calc")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
