@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /a
+        backend:
+          serviceName: {{ .Values.acceleration-dv.name }}
+          servicePort: {{ .Values.acceleration-a.containerPort }}
+      - path: /dv
+        backend:
+          serviceName: {{ .Values.acceleration-dv.name }}
+          servicePort: {{ .Values.acceleration-dv.containerPort }}
+      - path: /calc
+        backend:
+          serviceName: {{ .Values.acceleration-dv.name }}
+          servicePort: {{ .Values.acceleration-calc.containerPort }}
