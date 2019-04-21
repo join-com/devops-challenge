@@ -33,19 +33,6 @@ pipeline {
                 }
             }	
         }
-		stage('Push Docker Image acceleration-dv') {
-            when {
-                branch 'master'
-            }
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "acceleration-dv")
-                        app.push("latest")
-                    }
-                }
-            }
-        }
 		stage('Build Docker Image for acceleration-calc') {
             when {
                 branch 'master'
@@ -58,19 +45,6 @@ pipeline {
                     }
                 }
             }	
-        }
-        stage('Push Docker Image acceleration-calc') {
-            when {
-                branch 'master'
-            }
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "./acceleration-calc")
-                        app.push("latest")
-                    }
-                }
-            }
         }
 		stage('start minikube'){
 			when {
