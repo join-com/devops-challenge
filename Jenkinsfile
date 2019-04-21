@@ -46,15 +46,6 @@ pipeline {
                 }
             }	
         }
-
-		stage('initialize helm'){
-			when {
-                branch 'master'
-            }
-			steps {
-				sh 'helm init --upgrade'
-			}
-		}
 		stage('instal helm'){
 			when {
                 branch 'master'
