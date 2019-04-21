@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-a")
+                    app = docker.build(DOCKER_IMAGE_NAME , "./accelerationa")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "./acceleration-a")
+                        app.push("${env.BUILD_NUMBER}", "./accelerationa")
                         app.push("latest")
                     }
                 }
@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME , "./acceleration-dv")
+                    app = docker.build(DOCKER_IMAGE_NAME , "./accelerationdv")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}", "./acceleration-dv")
+                        app.push("${env.BUILD_NUMBER}", "./accelerationdv")
                         app.push("latest")
                     }
                 }
