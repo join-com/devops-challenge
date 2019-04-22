@@ -30,9 +30,10 @@ const server = http.createServer((req, res) => {
             }),
           );
         })
-        .catch(() => {
+        .catch((err) => {
           res.writeHead(500, { 'Content-Type': 'text/html' });
-          res.end('something wrong');
+          res.end('something wrong' + err);
+          console.log(err);
         });
 
       break;

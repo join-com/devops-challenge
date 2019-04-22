@@ -23,6 +23,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DV_URL
+              value: "{{ .Release.Name }}-acceleration-dv:3001/dv"
+            - name: A_URL
+              value: "{{ .Release.Name }}-acceleration-a:3002/a"
           ports:
             - name: calc
               containerPort: {{ .Values.service.internalPort }}
