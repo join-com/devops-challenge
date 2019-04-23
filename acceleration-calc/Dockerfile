@@ -8,7 +8,7 @@ EXPOSE 3001
 
 RUN yarn install
 RUN yarn
-CMD ["yarn", "build"]
+RUN yarn build
 CMD ["yarn", "dev"]
 CMD ["yarn", "start"]
 
