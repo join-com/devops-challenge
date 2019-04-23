@@ -32,8 +32,7 @@ const server = http.createServer((req, res) => {
         })
         .catch((err) => {
           res.writeHead(500, { 'Content-Type': 'text/html' });
-          res.end('something wrong' + err);
-          console.log(err);
+          res.end('something wrong: ' + err);
         });
 
       break;

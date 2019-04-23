@@ -25,9 +25,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: DV_URL
-              value: "{{ .Release.Name }}-acceleration-dv:3001/dv"
+              value: "http://{{ .Release.Name }}-acceleration-dv:3001/dv"
             - name: A_URL
-              value: "{{ .Release.Name }}-acceleration-a:3002/a"
+              value: "http://{{ .Release.Name }}-acceleration-a:3002/a"
           ports:
             - name: calc
               containerPort: {{ .Values.service.internalPort }}
