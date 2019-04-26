@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: acceleration-calc-service-{{ .Release.Name }}
+spec:
+    selector:
+        app: {{.Values.container.label_app}}
+    ports:
+        - name: main
+          protocol: {{ .Values.service.protocol}}
+          port: {{ .Values.service.expose_port}}
+          targetPort: {{ .Values.service.target_port}}
+
+

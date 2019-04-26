@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: acceleration-a
+spec:
+    replicas: {{ .Values.replicas }}
+    template:
+        metadata:
+            labels:
+                app: {{.Values.container.label_app}}
+        spec:
+            containers:
+            - name: acceleration-a-{{ .Release.Name }}
+              image: {{ .Values.container.image }}
+              imagePullPolicy: {{ .Values.container.imagePullPolicy }}
+              ports:
+                  - containerPort: {{ .Values.container.port_ingress }}
+              env:
+                 - name: RUNTIME_ENV
+                   value: {{ .Values.runtime }}
+              livenessProbe:
+                httpGet:
+                  path: /health
+                  port: {{ .Values.container.port_ingress }}
+                  initialDelaySeconds: 5
+                  periodSeconds: 3
+              readinessProbe:
+                httpGet:
+                  path: /health
+                  port: {{ .Values.container.port_ingress }}
+                  initialDelaySeconds: 5
+                  periodSeconds: 3

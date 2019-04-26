@@ -1,0 +1,22 @@
+# Default values for join-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Release-wide Values
+
+replicas: 2
+
+
+# Container Specific Values
+container:
+  image: acceleration-dv:latest
+  port_ingress: 3001
+  imagePullPolicy: Never
+  label_app: acceleration-dv
+  
+#Service Specfics 
+service:
+  expose_port: 3001
+  target_port: 3001
+  protocol: TCP
+
+

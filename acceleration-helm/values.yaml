@@ -1,0 +1,34 @@
+# Default values for join-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Release-wide Values
+
+replicas: 2
+
+
+# Container Specific Values
+container:
+  image: acceleration-calc:latest
+  port_ingress: 3000
+  imagePullPolicy: Never
+  label_app: acceleration-calc
+  
+#Service Specfics 
+service:
+  expose_port: 3000
+  target_port: 3000
+  protocol: TCP
+
+
+#####RUNTIME SETTINGS FOR CONTAINERS######
+# GLOBAL Overides loacated below for the subcharts
+#    dev === Developemtn
+#    start === Production
+
+runtime: start
+
+acceleration-dv:
+  runtime: start
+
+acceleration-a:
+  runtime: start

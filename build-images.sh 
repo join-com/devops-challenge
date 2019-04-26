@@ -1,0 +1,16 @@
+#!/bin/bash
+
+eval $(minikube docker-env)
+docker build -t acceleration-a  ./acceleration-a 
+docker build -t acceleration-calc ./acceleration-calc
+docker build -t acceleration-dv ./acceleration-dv
+
+
+# # docker stop $(docker ps -qa)
+# # docker rm  $(docker ps -qa)
+# docker rm -f acceleration-a
+# docker rm -f acceleration-dv
+# docker rm -f acceleration-calc 
+# docker run -d --name=acceleration-a -p 3002:3002 --network=testNetwork acceleration-a 
+# docker run -d --name=acceleration-dv -p 3001:3001 --network=testNetwork acceleration-dv
+# docker run -d --name=acceleration-calc -p 3000:3000 -e DV_URL="http://acceleration-dv:3001/dv" -e A_URL="http://acceleration-a:3002/a" --network=testNetwork acceleration-calc 

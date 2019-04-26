@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: nginx-ingress
+    annotations:
+         nginx.ingress.kubernetes.io/ssl-redirect: "\"false\""
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /calc
+        backend:
+          serviceName: acceleration-calc-service-{{ .Release.Name }}
+          servicePort: {{ .Values.service.expose_port}}
