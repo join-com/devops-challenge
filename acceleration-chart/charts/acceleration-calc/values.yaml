@@ -1,0 +1,47 @@
+# Default values for acceleration-calc.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  accelerationcalcImage: acceleration-calc #For local docker images
+  accelerationcalcTag: latest
+  pullPolicy: Never #For local docker images
+
+deployment:
+  port: 3000
+  protocol: TCP
+
+vars:
+  WEB_PORT: 3000
+  DV_URL: http://acceleration-dv:3001/dv
+  A_URL: http://acceleration-a:3002/a
+
+service:
+  type: ClusterIP
+  port: 3000
+  protocol: TCP
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 3000
+  protocol: TCP
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  path: /calc
+
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

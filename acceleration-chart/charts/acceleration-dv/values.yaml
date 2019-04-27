@@ -1,0 +1,36 @@
+# Default values for acceleration-a.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  accelerationdvImage: acceleration-dv #For local docker images
+  accelerationdvTag: latest
+  pullPolicy: Never #For local docker images
+
+deployment:
+  port: 3001
+  protocol: TCP
+
+vars:
+  WEB_PORT: 3001
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 3001
+  protocol: TCP
+
+ingress:
+  enabled: false
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
