@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o xtrace
+set -o errexit
+
+: ${DOCKER_REPO:?'DOCKER_REPO env variable is not set'}
+: ${DOCKER_TAG:?'DOCKER_TAG env variable is not set'}
+
+docker run -ti ${DOCKER_REPO}:${DOCKER_TAG} sh

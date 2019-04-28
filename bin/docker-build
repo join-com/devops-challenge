@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -o xtrace
+set -o errexit
+
+: ${DOCKER_REPO:?'DOCKER_REPO env variable is not set'}
+: ${DOCKER_TAG:?'DOCKER_TAG env variable is not set'}
+
+DOCKER_EXTRA_ARGS=${DOCKER_EXTRA_ARGS:-''}
+
+docker build $DOCKER_EXTRA_ARGS -t ${DOCKER_REPO}:${DOCKER_TAG} .

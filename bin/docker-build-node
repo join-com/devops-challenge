@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o xtrace
+set -o errexit
+
+version=$(<.node-version)
+export DOCKER_EXTRA_ARGS="--build-arg NODE_VERSION=${version}"
+
+exec docker-build
