@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.accelerationDV.name }}
+  namespace: {{ .Values.accelerationDV.namespace }}
+  labels:
+    app: {{ .Values.accelerationDV.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.accelerationDV.name }}
+  replicas: {{ .Values.accelerationDV.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.accelerationDV.name }}
+    spec:
+      containers:
+        - name: {{ .Values.accelerationDV.name }}
+          image: "{{ .Values.accelerationDV.image.repository }}:{{ .Values.accelerationDV.image.tag }}"
+          imagePullPolicy: "{{ .Values.accelerationDV.image.pullPolicy }}"
+          ports:
+          - containerPort: {{ .Values.accelerationDV.service.servicePort }}
+          env:
+          - name: RUNENV
+            value: "{{ .Values.accelerationDV.image.env.RUNENV }}"
+          - name: WEB_PORT
+            value: "{{ .Values.accelerationDV.image.env.WEB_PORT }}"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.accelerationDV.service.servicePort }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.accelerationDV.service.servicePort }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+

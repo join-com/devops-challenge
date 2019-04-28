@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.accelerationCALC.name }}
+  namespace: {{ .Values.accelerationCALC.namespace }}
+  labels:
+    app: {{ .Values.accelerationCALC.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.accelerationCALC.name }}
+  replicas: {{ .Values.accelerationCALC.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.accelerationCALC.name }}
+    spec:
+      containers:
+        - name: {{ .Values.accelerationCALC.name }}
+          image: "{{ .Values.accelerationCALC.image.repository }}:{{ .Values.accelerationCALC.image.tag }}"
+          imagePullPolicy: "{{ .Values.accelerationCALC.image.pullPolicy }}"
+          ports:
+          - containerPort: {{ .Values.accelerationCALC.service.servicePort }}
+          env:
+          - name: RUNENV
+            value: "{{ .Values.accelerationCALC.image.env.RUNENV }}"
+          - name: WEB_PORT
+            value: "{{ .Values.accelerationCALC.image.env.WEB_PORT }}"
+          - name: DV_URL
+            value: "http://{{ .Values.accelerationDV.service.name }}.{{ .Values.accelerationDV.namespace }}.svc.cluster.local:3001/dv"
+          - name: A_URL
+            value: "http://{{ .Values.accelerationA.service.name }}.{{ .Values.accelerationA.namespace }}.svc.cluster.local:3002/a"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.accelerationCALC.service.servicePort }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.accelerationCALC.service.servicePort }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+

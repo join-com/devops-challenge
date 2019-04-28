@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.accelerationDV.service.name }}
+  namespace: {{ .Values.accelerationDV.namespace }}
+  labels:
+    name: {{ .Values.accelerationDV.service.name }}
+spec:
+  ports:
+    - name: http
+      port: {{ .Values.accelerationDV.service.servicePort }}
+      protocol: TCP
+  selector:
+    app: {{ .Values.accelerationDV.name }}

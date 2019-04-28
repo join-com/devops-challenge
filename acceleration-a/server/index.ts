@@ -44,6 +44,6 @@ server.listen(port, (err: Error) => {
   console.log(`server is listening on ${port}`);
 });
 
-setTimeout(() => {
-  status.fail = true;
-}, Math.random() * 300000);
+// setTimeout(() => {
+//   status.fail = true;
+// }, Math.random() * 300000);

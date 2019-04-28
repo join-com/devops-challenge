@@ -3,6 +3,17 @@
 
 ## The context
 This challenge addresses a web application with a microservice architecture to calculate the [acceleration](http://www.softschools.com/formulas/physics/acceleration_formula/1/) of an object.
+
+## Details and how-to
+Docker images are built and has been push docker registry (docker hub). Add ingress addong to your local minikube cluster via minikube `minikube addons enable ingress`.
+
+HOW-TO:
+```bash
+$helm init
+$helm install acceleration-app --namespace=joincom
+```
+Check exposed service via ```curl -svL "http://$(minikube ip)/calc?vf=200&vi=5&t=123"```
+
 ## The application
 - The application contains 3 microservices
 - Each microservice takes care of only one arithmetic operation

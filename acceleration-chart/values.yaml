@@ -1,0 +1,44 @@
+accelerationA:
+  name: acceleration-a
+  namespace: joincom
+  image:
+    repository: cdfy/acceleration-a
+    tag: latest
+    pullPolicy: IfNotPresent
+    env:
+      WEB_PORT: 3002
+      RUNENV: start # run in production (overwrite default dev env value)
+  replicaCount: 2
+  service:
+    name: acceleration-a-service
+    servicePort: 3002
+
+accelerationDV:
+  name: acceleration-dv
+  namespace: joincom
+  image:
+    repository: cdfy/acceleration-dv
+    tag: latest
+    pullPolicy: IfNotPresent
+    env:
+      WEB_PORT: 3001
+      RUNENV: start # run in production (overwrite default dev env value)
+  replicaCount: 2
+  service:
+    name: acceleration-dv-service
+    servicePort: 3001
+
+accelerationCALC:
+  name: acceleration-calc
+  namespace: joincom
+  image:
+    repository: cdfy/acceleration-calc
+    tag: latest
+    pullPolicy: IfNotPresent
+    env:
+      WEB_PORT: 3000
+      RUNENV: start # run in production (overwrite default dev env value)
+  replicaCount: 2
+  service:
+    name: acceleration-calc-service
+    servicePort: 3000

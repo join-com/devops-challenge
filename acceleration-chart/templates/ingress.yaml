@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+namespace: joincom
+kind: Ingress
+metadata:
+  name: calc-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /calc
+        backend:
+          serviceName: acceleration-calc-service
+          servicePort: 3000
