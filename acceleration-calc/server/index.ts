@@ -17,6 +17,8 @@ const server = http.createServer((req, res) => {
   const { pathname, query } = url.parse(req.url!, true);
   switch (pathname) {
     case '/health':
+      //TODO: health check needs to be fixed by developers
+      //TODO: it should check for dependencies A and DV being up and only in this case return 200
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end('Ok!');
       break;

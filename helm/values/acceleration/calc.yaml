@@ -1,0 +1,21 @@
+image:
+  repo: acceleration-calc
+  tag: local
+  imagePullPolicy: Never # required to use locally built image
+
+dependencyUrls:
+  a: "http://a-acceleration-a/a"
+  dv: "http://dv-acceleration-dv/dv"
+
+ingress:
+  host: acceleration.k8s
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# HPA is disabled because metric-server api is broken out of the box in Kubernetes shipped with Docker for Mac
+# see https://github.com/docker/for-mac/issues/3260
+autoscaling:
+  enabled: false

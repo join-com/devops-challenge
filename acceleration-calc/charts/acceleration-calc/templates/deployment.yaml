@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+spec:
+{{- if .Values.autoscaling.enabled }}
+  replicas: {{ default 2 .Values.autoscaling.minReplicas }}
+{{- else }}
+  replicas: {{ default 2 .Values.replicas }}
+{{- end }}
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: {{ .Release.Name | quote }}
+        heritage: {{ .Release.Service | quote }}
+    spec:
+      serviceAccountName: {{ template "fullname" . }}
+      containers:
+      - name: acceleration-calc
+        image: {{ .Values.image.repo }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        env:
+          - name: WEB_PORT
+            value: "8080"
+          - name: A_URL
+            value: "{{ .Values.dependencyUrls.a }}"
+          - name: DV_URL
+            value: "{{ .Values.dependencyUrls.dv }}"
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          timeoutSeconds: 3

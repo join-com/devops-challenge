@@ -1,0 +1,36 @@
+helmDefaults:
+  tillerNamespace: kube-system
+releases:
+  - name: traefik
+    namespace: kube-system
+    chart: stable/traefik
+    version: 1.67.1
+    values:
+      - helm/values/kube-system/traefik.yaml
+    wait: true
+    installed: true
+    atomic: true
+
+  - name: a
+    namespace: acceleration
+    chart: ./acceleration-a/charts/acceleration-a
+    values:
+      - helm/values/acceleration/a.yaml
+    wait: true
+    atomic: true
+
+  - name: dv
+    namespace: acceleration
+    chart: ./acceleration-dv/charts/acceleration-dv
+    values:
+      - helm/values/acceleration/dv.yaml
+    wait: true
+    atomic: true
+
+  - name: calc
+    namespace: acceleration
+    chart: ./acceleration-calc/charts/acceleration-calc
+    values:
+      - helm/values/acceleration/calc.yaml
+    wait: true
+    atomic: true

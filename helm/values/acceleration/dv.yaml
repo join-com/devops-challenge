@@ -1,0 +1,14 @@
+image:
+  repo: acceleration-dv
+  tag: local
+  imagePullPolicy: Never # required to use locally built image
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# HPA is disabled because metric-server api is broken out of the box in Kubernetes shipped with Docker for Mac
+# see https://github.com/docker/for-mac/issues/3260
+autoscaling:
+  enabled: false

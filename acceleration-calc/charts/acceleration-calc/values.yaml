@@ -1,0 +1,37 @@
+# Default values for acceleration-calc.
+image:
+  repo: join-com/acceleration-calc
+  tag: stable
+  imagePullPolicy: IfNotPresent
+
+dependencyUrls:
+  a: "http://a.acceleration/a"
+  dv: "http://dv.acceleration/dv"
+
+ingress:
+  path: /calc
+  host: acceleration.join.com
+
+resources: {}
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+replicas: 2
+# Create HorizontalPodAutoscaler object.
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 80
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 80
