@@ -1,3 +1,0 @@
-docker run  -d -p 3001:3001 -e WEB_PORT=3001 acceleration-dv:1 dev
-docker run -d -p 3002:3002 -e WEB_PORT=3002 acceleration-a:1 dev
-docker run -d -p 3000:3000 -e WEB_PORT=3000 -e DV_URL=http://10.253.37.80:3001/dv -e A_URL=http://10.253.37.80:3002/a acceleration-calc:3 dev
