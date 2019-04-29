@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: acceleration-calc
+  namespace: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: acceleration-calc
+  template:
+    metadata:
+      labels:
+        app: acceleration-calc
+    spec:
+      containers:
+        - name: acceleration-calc
+          image: evkuzin/calc:3
+          args: ["start"]
+          ports:
+          - containerPort: 8000
+          resources:
+            requests:
+              memory: "128M"
+              cpu: "25m"
+            limits:
+              memory: "256M"
+              cpu: "50m"
+          env:
+            - name: WEB_PORT
+              value: "8000"
+            - name: DV_URL
+              value: http://acceleration-dv.test.svc.cluster.local:8000/dv
+            - name: A_URL
+              value: http://acceleration-a.test.svc.cluster.local:8000/a
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 5
+

@@ -1,0 +1,48 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: acceleration-a
+  name: acceleration-a
+  namespace: test
+spec:
+  type: ClusterIP
+  selector:
+    app: acceleration-a
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: acceleration-dv
+  name: acceleration-dv
+  namespace: test
+spec:
+  type: ClusterIP
+  selector:
+    app: acceleration-dv
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: acceleration-calc
+  name: acceleration-calc
+  namespace: test
+spec:
+  type: ClusterIP
+  selector:
+    app: acceleration-calc
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP

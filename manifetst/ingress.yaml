@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: test
+spec:
+  rules:
+  - host: test.test.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: acceleration-calc
+          servicePort: 8000

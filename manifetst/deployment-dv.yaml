@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: acceleration-dv
+  namespace: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: acceleration-dv
+  template:
+    metadata:
+      labels:
+        app: acceleration-dv
+    spec:
+      containers:
+        - name: acceleration-dv
+          image: evkuzin/dv:1
+          args: ["start"]
+          ports:
+          - containerPort: 8000
+          resources:
+            requests:
+              memory: "128M"
+              cpu: "25m"
+            limits:
+              memory: "256M"
+              cpu: "50m"
+          env:
+            - name: WEB_PORT
+              value: "8000"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 5
+
