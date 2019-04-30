@@ -1,0 +1,11 @@
+FROM node:NODE_VERSION-alpine
+
+ADD . ./opt/APPLICATION
+
+WORKDIR /opt/APPLICATION
+
+RUN yarn install && yarn build
+
+EXPOSE WEB_PORT
+
+CMD [ "yarn", "YARNCMD" ]
