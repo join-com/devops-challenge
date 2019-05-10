@@ -1,4 +1,4 @@
-FROM node:8.11.3-alpine
+FROM node:10.14.2-alpine
 
 RUN addgroup -S join-com && \ 
     adduser -S -D -h /opt/join-com -s /bin/false join-com && \
@@ -19,7 +19,7 @@ COPY . $APP_DIR
 
 
 # Install app dependencies
-RUN yarn install --prod
+RUN yarn install 
 
 # Bundle app source
 RUN yarn build
