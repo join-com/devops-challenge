@@ -6,7 +6,7 @@ RUN addgroup -S join-com && \
     chmod -R 755 /opt/join-com 
 
 ENV APP_DIR=/opt/join-com
-ENV WEB_PORT=3001
+ENV WEB_PORT=3002
 
 # Create app directory
 WORKDIR $APP_DIR
