@@ -40,12 +40,12 @@ spec:
               initialDelaySeconds: 5
               periodSeconds: 3
           env:
-            - name: WEB_PORT
-              value: {{ .Values.service.port }}
-            - name: DV_URL
-              value: {{ .Values.env.dv_path }}
-            - name: A_URL
-              value: {{ .Values.env.a_path }}
+            - name: "WEB_PORT"
+              value: "{{ .Values.service.port }}"
+            - name: "DV_URL"
+              value: "{{ .Values.env.dv_path }}"
+            - name: "A_URL"
+              value: "{{ .Values.env.a_path }}"
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
