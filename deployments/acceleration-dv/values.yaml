@@ -14,7 +14,7 @@ fullnameOverride: "acceleration-dv"
 
 service:
   type: NodePort
-  port: 3002
+  port: 3001
 
 ingress:
   enabled: false

@@ -17,8 +17,8 @@ service:
   port: 3000
 
 env:
-  dv_path: "http://acceleration-dv:3002/dv"
-  a_path: "http://acceleration-a:3001/a"
+  dv_path: "http://acceleration-dv:3001/dv"
+  a_path: "http://acceleration-a:3002/a"
 
 ingress:
   enabled: true

@@ -14,7 +14,7 @@ fullnameOverride: "acceleration-a"
 
 service:
   type: NodePort
-  port: 3001
+  port: 3002
 
 ingress:
   enabled: false
