@@ -29,13 +29,13 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /status
+              path: /health
               port: {{ .Values.service.port }}
               initialDelaySeconds: 5
               periodSeconds: 3
           readinessProbe:
             httpGet:
-              path: /status
+              path: /health
               port: {{ .Values.service.port }}
               initialDelaySeconds: 5
               periodSeconds: 3
