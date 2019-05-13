@@ -42,9 +42,9 @@ spec:
           env:
             - name: WEB_PORT
               value: {{ .Values.service.port }}
-            -name: DV_URL
+            - name: DV_URL
               value: {{ .Values.env.dv_path }}
-            -name: A_URL
+            - name: A_URL
               value: {{ .Values.env.a_path }}
 
           resources:
