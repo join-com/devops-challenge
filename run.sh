@@ -80,7 +80,7 @@ build_container_images() {
       printf "Building container image: acceleration-%s\n" "$service"
       cp Dockerfile "acceleration-$service/"
       cd "acceleration-$service" || exit
-      docker build . -t "acceleration-$service:$build_tag"
+      docker build . -t "udkyo/acceleration-$service:$build_tag"
       rm Dockerfile
       )
     done
@@ -91,15 +91,15 @@ remove_container_images() {
     for service in "${services[@]}"
     do
         printf "Removing container image: acceleration-%s\n" "$service"
-        docker rmi "acceleration-$service:$build_tag"
+        docker rmi "udkyo/acceleration-$service:$build_tag"
     done
 }
 
 deploy_services() {
-  if ! command -v helm; then echo "Helm not found, run with bootstrap first"; exit 1; fi
+  if ! command -v helm &>/dev/null; then echo "Helm not found, run with bootstrap first"; exit 1; fi
   if helm ls --all "$release_name" &>/dev/null; then helm del "$release_name" --purge; fi
   echo "Deploying $release_name" 
-  helm install  --namespace "$namespace" "." --name "$release_name"
+  helm install  --namespace "$namespace" "." --name "$release_name" --set global.hostname=minikube.test
 }
 
 update_hosts_file() {
@@ -113,7 +113,7 @@ update_hosts_file() {
   if grep minikube.test /etc/hosts &>/dev/null; then
     sudo_sedi "s/^.*minikube.test$/$ingress_ip minikube.test/" /etc/hosts
   else
-    printf "%s minikube.test" "$ingress_ip" | sudo tee -a /etc/hosts
+    printf "%s minikube.test" "$ingress_ip" | sudo tee -a /etc/hosts &>/dev/null
   fi
 }
 

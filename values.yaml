@@ -1,4 +1,5 @@
 global:
   replicas: 2
   yarncmd: start
+  hostname: minikube.test
 
