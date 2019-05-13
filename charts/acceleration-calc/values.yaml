@@ -1,0 +1,61 @@
+# Default values for acceleration-calc.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: "acceleration-calc"
+  tag: "1.0.0-alpine"
+  pullPolicy: "Never"
+
+# URLs are parsed and injected into env vars in deployment.yaml
+A_URL: "http://{{ .Release.Name }}-acceleration-a:3002/a"
+DV_URL: "http://{{ .Release.Name }}-acceleration-dv:3001/dv"
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: "NodePort"
+  port: "3000"
+
+ingress:
+  enabled: true
+  annotations:
+    {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: "minikube.test"
+      paths: ['/calc']
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+environment:
+  - name: WEB_PORT
+    value: "3000"
+  # - name: A_URL
+  #   value: http://acceleration-a:3002/a
+  # - name: DV_URL
+  #   value: http://acceleration-dv:3001/dv
+
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after "resources:".
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

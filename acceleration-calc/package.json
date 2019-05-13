@@ -7,7 +7,7 @@
   "author": "JOIN Team",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "env-cmd .env ts-node ./server",
+    "dev": "env-cmd --no-override .env ts-node ./server",
     "start": "node dist",
     "build": "tsc",
     "build:clean": "rm -rf dist"
