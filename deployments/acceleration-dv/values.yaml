@@ -13,7 +13,7 @@ nameOverride: "acceleration-dv"
 fullnameOverride: "acceleration-dv"
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 3002
 
 ingress:
