@@ -1,4 +1,4 @@
-FROM node:10.14.2-alpine
+FROM node:8.11.3-alpine
 
 RUN addgroup -S join-com && \ 
     adduser -S -D -h /opt/join-com -s /bin/false join-com && \

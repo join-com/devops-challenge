@@ -1,10 +1,9 @@
-FROM node:10.14.2-alpine
+FROM node:8.11.3-alpine
 
 RUN addgroup -S join-com && \ 
     adduser -S -D -h /opt/join-com -s /bin/false join-com && \
     chown -R join-com:join-com /opt/join-com && \
-    chmod -R 755 /opt/join-com && \
-    apk add curl
+    chmod -R 755 /opt/join-com 
 
 ENV APP_DIR=/opt/join-com
 ENV WEB_PORT=3000
