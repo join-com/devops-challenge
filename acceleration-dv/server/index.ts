@@ -44,5 +44,5 @@ server.listen(port, (err: Error) => {
 });
 
 setTimeout(() => {
-  status.fail = true;
+  status.fail = false;
 }, Math.random() * 300000);
