@@ -4,8 +4,8 @@ MAINTAINER Raisal PA
 
 ENV APP_HOME=/app \
     WEB_PORT=3000 \
-    DV_URL=http://acceleration-dv:3001/dv \
-    A_URL=http://acceleration-a:3002/a
+    DV_URL=http://localhost:3001/dv \
+    A_URL=http://localhost:3002/a
 
 WORKDIR $APP_HOME
 
