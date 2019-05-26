@@ -24,9 +24,8 @@ helm init
 ./run-me.sh
 ```
 
-```bash
-Browse : minikube-ip/calc?vf=200&vi=5&t=123 for the result
-```
+> *** Browse : minikube-ip/calc?vf=200&vi=5&t=123 for the result ***
+
 
 4. Output
 ```bash
