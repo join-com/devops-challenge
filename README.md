@@ -23,7 +23,7 @@ helm init
 ```bash
 ./run-me.sh
 ```
-4. Result
+4. Output
 ```bash
 ADMINs-MacBook-Pro:devops-challenge admin$ ./run-me.sh
 [INFO]: Logged into the minikube docker environment
@@ -156,5 +156,5 @@ acceleration-ingress  *      80       0s
 [Success]: Browse http://192.168.99.102/calc?vf=200&vi=5&t=123
 
 ```
-
+5. Result
 ![alt text](Screens/postman-result.png)
