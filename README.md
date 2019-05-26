@@ -23,6 +23,11 @@ helm init
 ```bash
 ./run-me.sh
 ```
+
+```bash
+Browse : minikube-ip/calc?vf=200&vi=5&t=123 for the result
+```
+
 4. Output
 ```bash
 ADMINs-MacBook-Pro:devops-challenge admin$ ./run-me.sh
