@@ -157,4 +157,6 @@ acceleration-ingress  *      80       0s
 
 ```
 5. Result
+
+
 ![alt text](Screens/postman-result.png)
