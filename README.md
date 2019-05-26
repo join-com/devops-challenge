@@ -24,7 +24,7 @@ helm init
 ./run-me.sh
 ```
 
-> *** Browse : minikube-ip/calc?vf=200&vi=5&t=123 for the result ***
+ **Browse : minikube-ip/calc?vf=200&vi=5&t=123 for the result** :blush:
 
 
 4. Output
@@ -164,3 +164,5 @@ acceleration-ingress  *      80       0s
 
 
 ![alt text](Screens/postman-result.png)
+
+**Thank you for giving me a good opportunity to learn Helm!** :blush:
