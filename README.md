@@ -45,3 +45,25 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - Create a pull request
 - Please complete your working solution within 7 days of receiving this challenge, and be sure to notify us when it is ready for review.
 
+------------------------------------------------------------------------------------------------------------------
+# Solution:
+
+This solution tested successfully on Minikube
+```bash
+minikube version: v1.0.0
+```
+Steps:
+
+1. prerequisite
+
+- Minikube Installed on the system.
+- Helm Client Installed on the system.
+
+2. Install Tiller.
+```bash
+helm init
+```
+3. Run the script run-me.sh
+```bash
+./run-me.sh
+```
