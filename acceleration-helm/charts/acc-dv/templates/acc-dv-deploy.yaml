@@ -21,15 +21,3 @@ spec:
         ports:
         - name: {{ .Values.service.targetPort}}
           containerPort: {{ .Values.container.containerPort }}
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: {{ .Values.container.containerPort }}
-          initialDelaySeconds: 5
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: {{ .Values.container.containerPort }}
-          initialDelaySeconds: 5
-          periodSeconds: 3

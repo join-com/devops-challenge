@@ -54,10 +54,10 @@ minikube version: v1.0.0
 ```
 Steps:
 
-1. prerequisite
+1. Prerequisite
 
-- Minikube Installed on the system.
-- Helm Client Installed on the system.
+- Minikube Installed on the system (Tested on : v1.0.0).
+- Helm Client Installed on the system (Tested on : v2.14.0).
 
 2. Install Tiller.
 ```bash
@@ -67,3 +67,4 @@ helm init
 ```bash
 ./run-me.sh
 ```
+4. Result
