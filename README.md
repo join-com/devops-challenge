@@ -156,3 +156,5 @@ acceleration-ingress  *      80       0s
 [Success]: Browse http://192.168.99.102/calc?vf=200&vi=5&t=123
 
 ```
+
+![alt text](Screens/postman-result.png)
