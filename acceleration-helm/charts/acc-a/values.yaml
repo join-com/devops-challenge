@@ -1,0 +1,14 @@
+replicas: 2
+
+container:
+  image: acceleration-a:latest
+  containerPort: 3002
+  imagePullPolicy: Never
+  label_app: acceleration-a
+
+service:
+  port: 3002
+  nodePort: 30000
+  protocol: TCP
+  type: ClusterIP
+  targetPort: acc-a-port

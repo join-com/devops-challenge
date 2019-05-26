@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acceleration-deployment-calc-{{ .Release.Name }}
+  labels:
+    app: {{.Values.container.label_app}}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.container.label_app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.container.label_app }}
+    spec:
+      containers:
+      - name: {{ .Values.container.label_app }}-{{ .Release.Name }}
+        image: {{ .Values.container.image }}
+        imagePullPolicy: {{ .Values.container.imagePullPolicy }}
+        env:
+           - name: DV_URL
+             value: "http://acc-dv-service:3001/dv"
+           - name: A_URL
+             value: "http://acc-a-service:3002/a"
+        ports:
+        - name: {{ .Values.service.targetPort}}
+          containerPort: {{ .Values.container.containerPort }}
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.container.containerPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.container.containerPort }}
+          initialDelaySeconds: 5
+          periodSeconds: 3

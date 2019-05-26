@@ -1,0 +1,14 @@
+replicas: 2
+
+container:
+  image: acceleration-dv:latest
+  containerPort: 3001
+  imagePullPolicy: Never
+  label_app: acceleration-dv
+
+service:
+  port: 3001
+  nodePort: 30000
+  protocol: TCP
+  type: ClusterIP
+  targetPort: acc-dv-port

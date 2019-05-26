@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: acc-a-service
+spec:
+  ports:
+  - port: {{ .Values.service.port}}
+    targetPort: {{ .Values.service.targetPort}}
+    protocol: {{ .Values.service.protocol}}
+
+  selector:
+    app: {{.Values.container.label_app}}
+  type: {{ .Values.service.type}}

@@ -3,9 +3,7 @@ FROM node:10.14.2-alpine
 MAINTAINER Raisal PA
 
 ENV APP_HOME=/app \
-    WEB_PORT=3000 \
-    DV_URL=http://localhost:3001/dv \
-    A_URL=http://localhost:3002/a
+    WEB_PORT=3000
 
 WORKDIR $APP_HOME
 

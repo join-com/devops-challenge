@@ -1,0 +1,14 @@
+replicas: 2
+
+container:
+  image: acceleration-calc:latest
+  containerPort: 3000
+  imagePullPolicy: Never
+  label_app: acceleration-calc
+
+service:
+  port: 3000
+  nodePort: 30000
+  protocol: TCP
+  type: NodePort
+  targetPort: acc-cal-port
