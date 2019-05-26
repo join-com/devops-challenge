@@ -5,7 +5,6 @@ metadata:
 spec:
   ports:
   - port: {{ .Values.service.port}}
-    nodePort: {{ .Values.service.nodePort}}
     targetPort: {{ .Values.service.targetPort}}
     protocol: {{ .Values.service.protocol}}
 

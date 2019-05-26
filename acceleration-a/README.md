@@ -1,7 +1,7 @@
 
 # Note:
 
-Removed following line of code to avoid the Timeout
+Removed following line of code from the file "server/index.ts" to avoid the Timeout
 
 ```bash
 setTimeout(() => {

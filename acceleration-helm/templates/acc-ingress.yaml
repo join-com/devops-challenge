@@ -1,15 +1,14 @@
-
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: acceleration-ingress
-  annotations:
-    http.port: "3000"
+    name: acceleration-ingress
+    annotations:
+         nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
   - http:
       paths:
-      - path: /calc
+      - path: /cal
         backend:
           serviceName: acc-cal-service
-          servicePort: 3000
+          servicePort: {{ .Values.service.port}}

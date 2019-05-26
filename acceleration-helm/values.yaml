@@ -10,5 +10,5 @@ service:
   port: 3000
   nodePort: 30000
   protocol: TCP
-  type: NodePort
+  type: ClusterIP
   targetPort: acc-cal-port
