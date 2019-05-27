@@ -30,6 +30,7 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - Only  `/calc` of `acceleration-calc` microservices can be available outside of the kubernetes cluster.
 - Run the application on a kubernetes cluster like Minikube or Docker for Mac.
 - Make sure the application is stable.
+- Please do not change a code in services.
 
 # Environment Setup
 - Microservices are written on Typescript and Node.js version 10.14.2
