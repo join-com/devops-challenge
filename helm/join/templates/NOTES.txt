@@ -1,0 +1,2 @@
+Please open you browser and type URL
+http://acceleration-calc.local/calc?vf=200&vi=5&t=123

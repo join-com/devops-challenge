@@ -1,3 +1,17 @@
+## Solution
+1. Please install helm from link https://helm.sh/docs/using_helm/#installing-helm
+2. Install homebrew from link https://docs.brew.sh/Installation
+3. Install minikube using brew
+4. Install docker from link https://docs.docker.com/install/
+```bash
+brew cask install minikube
+```
+5. Type
+```bash
+make all
+```
+Have fun :)
+
 # Infrastructure Engineer (DevOps) Challenge
 ![JOIN acceleration](https://github.com/join-com/devops-challenge/raw/master/illustration.png)
 
@@ -44,4 +58,3 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - The challenge is on!
 - Create a pull request
 - Please complete your working solution within 7 days of receiving this challenge, and be sure to notify us when it is ready for review.
-
