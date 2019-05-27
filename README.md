@@ -2,10 +2,10 @@
 1. Please install helm from link https://helm.sh/docs/using_helm/#installing-helm
 2. Install homebrew from link https://docs.brew.sh/Installation
 3. Install minikube using brew
-4. Install docker from link https://docs.docker.com/install/
 ```bash
 brew cask install minikube
 ```
+4. Install docker from link https://docs.docker.com/install/
 5. Type
 ```bash
 make all
