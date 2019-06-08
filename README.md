@@ -45,3 +45,15 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - **Send us an email with a link to repository when you finish the assesment.**
 - Please complete your working solution within 7 days of receiving this challenge.
 
+## Local setup
+1. Install [helm](https://helm.sh/docs/using_helm/#installing-helm)
+2. Install [homebrew](https://docs.brew.sh/Installation)
+3. Install minikube
+```bash
+brew cask install minikube
+```
+4. Install [docker](https://docs.docker.com/install/)
+5. Type
+```bash
+make alls
+```
