@@ -1,0 +1,2 @@
+FROM ${CURDIR}-build:latest
+CMD yarn start

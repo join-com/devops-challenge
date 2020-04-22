@@ -1,0 +1,4 @@
+build.sh
+*.template
+Makefile
+Dockerfile
