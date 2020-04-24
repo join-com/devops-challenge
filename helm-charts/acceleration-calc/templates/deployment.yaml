@@ -8,6 +8,13 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  completions: 2
+  parallelism: 2
+  minReadySeconds: 30
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+    type: RollingUpdate
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -31,14 +38,14 @@ spec:
             httpGet:
               path: /health
               port: http
-            initialDelaySeconds: 4
-            periodSeconds: 2
+            initialDelaySeconds: 30
+            periodSeconds: 1
           readinessProbe:
             httpGet:
               path: /health
               port: http
-            initialDelaySeconds: 4
-            periodSeconds: 2
+            initialDelaySeconds: 20
+            periodSeconds: 1
           env:
             - name: DV_URL
               value: "http://{{ .Release.Name }}-acceleration-dv/dv"

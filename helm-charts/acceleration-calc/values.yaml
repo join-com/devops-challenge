@@ -3,9 +3,12 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 2
+application_port: 3000
+deployment_type: dev
 
+# repository name will be <image.repository>-<deployment_type>
 image:
-  repository: acceleration-calc-dev
+  repository: acceleration-calc
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -16,8 +19,6 @@ service:
   type: ClusterIP
   port: 80
 
-application_port: 3000
-
 ingress:
   enabled: true
   annotations: {}
@@ -25,8 +26,6 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - acceleration-calc.local
-    - acceleration-calc
     - acceleration-calc-dev
   tls: []
   #  - secretName: chart-example-tls

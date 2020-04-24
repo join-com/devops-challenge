@@ -1,6 +1,6 @@
 TOPTARGET := all clean
 
-SUBDIRS := $(wildcard acceleration-*/.)
+SUBDIRS := $(wildcard */.)
 
 $(TOPTARGET): $(SUBDIRS)
 $(SUBDIRS):

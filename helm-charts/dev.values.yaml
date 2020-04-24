@@ -1,0 +1,14 @@
+image:
+  repository: acceleration-calc-dev
+
+ingress:
+  hosts:
+    - acceleration-calc-dev
+
+acceleration-a:
+  image:
+    repository: acceleration-a-dev
+
+acceleration-dv:
+  image:
+    repository: acceleration-dv-dev
