@@ -45,3 +45,33 @@ curl http://127.0.0.1:3000/calc?vf=200&vi=5&t=123
 - **Send us an email with a link to repository when you finish the assesment.**
 - Please complete your working solution within 7 days of receiving this challenge.
 
+# What does it do?
+**Make** creates local docker images of provided applications and deploy it via **HELM**
+
+# Requerements
+  - kubernetes >=1.14
+  - kubectl
+  - GNU make
+  - Docker >= 19
+  - Helm v2.10.0
+
+# How to build
+
+Following command build and deploy all provided applications(dev and prod versions)
+```sh
+$ make
+```
+For production environments only
+```sh
+$ make assemble-prod
+```
+For dev environments only
+```sh
+$ make assemble-dev
+```
+
+To build image-only:
+```sh
+$ make <env>-image
+```
+where <env> = prod or dev
