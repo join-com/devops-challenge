@@ -1,0 +1,24 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "acceleration-a.fullname" . }}
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "acceleration-a.fullname" . }}
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+    - type: Object
+      object:
+        metric:
+          name: unavailableReplicas
+        describedObject:
+          apiVersion: apps/v1
+          kind: Deployment
+          name: {{ include "acceleration-a.fullname" . }}
+        target:
+          type: Value
+          value: 1
